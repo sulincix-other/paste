@@ -1,2 +1,4 @@
 build/
+modules/
 go.sum
+paste.db
