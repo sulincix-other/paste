@@ -1,0 +1,34 @@
+* {
+  background: black;
+  font-family: monospace;
+  color:#eceff1;
+}
+
+textarea {
+  max-width: 95%;
+  width: 1000px;
+  border-radius: 8px;
+
+}
+
+input{
+  text-decoration: None;
+  border-radius: 99999px;
+}
+
+input:focus, textarea:focus{
+  background-color: #455a64;
+  border: 1px solid #aa7700;
+  outline: none;
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.4);
+}
+
+input, textarea {
+  resize: vertical;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  background-color: #4f5b62;
+  padding: 10px;
+  margin: 3px;
+  border: 0px;
+  color:white;
+}
