@@ -8,7 +8,6 @@ import (
 )
 
 func view (w http.ResponseWriter, r *http.Request) {
-    fmt.Printf("%s\n",r.URL.Path)
     if r.URL.Path == "/" {
         w.Header().Set("Content-Type", "text/html")
         fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/paste'\" />")
@@ -27,5 +26,5 @@ func view (w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
     w.Header().Set("Content-type:", "text/plain; charset=utf-8");
-    fmt.Fprintf(w, "%s\n", b64_decode(paste))
+    fmt.Fprintf(w, "%s", b64_decode(paste))
 }

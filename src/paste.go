@@ -15,12 +15,14 @@ func paste (w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Pragma", "no-cache")
     w.Header().Set("Expires", "0")
     initdb := false
+    web := "0"
     if _, err := os.Stat("./paste.db"); err != nil {
         initdb = true
     }
     var paste string
     var paste_id string
     if "POST" == r.Method {
+        web = r.FormValue("web")
         paste = r.FormValue("paste")
     }else{
         fmt.Fprintf(w,"Invalid request type: %s", r.Method)
@@ -34,12 +36,15 @@ func paste (w http.ResponseWriter, r *http.Request) {
     }
     crc32q := crc32.MakeTable(0xD5828281)
     paste_id = fmt.Sprintf("%08x", crc32.Checksum([]byte(string(paste)), crc32q))
-    query := fmt.Sprintf("INSERT INTO paste (id,paste) VALUES(\"%s\", \"%s\");", b64_encode(paste_id), b64_encode(paste))
-    fmt.Fprintf(w,"%s\n",query)
-    fmt.Println(query)
+    query := fmt.Sprintf("INSERT OR REPLACE INTO paste (id,paste) VALUES(\"%s\", \"%s\");", b64_encode(paste_id), b64_encode(paste))
+    fmt.Println(paste_id)
     _, err = db.Exec(query)
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/%s'\" />", paste_id)
+    if web == "1" {
+        fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/%s'\" />", paste_id)
+    }else{
+        fmt.Fprintf(w, "%s\n", paste_id)
+    }
 }
