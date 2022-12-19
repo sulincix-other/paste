@@ -10,7 +10,7 @@ build: clean
 	done
 	for file in $$(find data -type f) ; do \
 	    fname=`basename $$file` ; \
-	    bash tool/gendata.sh $${fname/./_} $$file > build/$$fname.go ; \
+	    bash tool/gendata.sh $${fname/./_} $$file text/$${fname/*./} > build/$$fname.go ; \
 	done
 	cd build ; set -x ; GOPATH=`pwd`/../modules go build $${STATIC:+$(STATIC_FLAGS)}  -a -o paste *.go
 

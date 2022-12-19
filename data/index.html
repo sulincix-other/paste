@@ -1,11 +1,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <link rel="stylesheet" href="main.css">
+    <style>
+	*{padding:0;margin:0;}
+
+	body{
+		font-family:Monospace;
+	}
+
+	textarea {
+	  font-size:14px;
+	  border: none;
+	  position:fixed;
+	  left: 0px;
+	  resize: none;
+	  padding: 10px;
+	  background: #002b36;
+	  color: #eee8d5;
+      height: 100%;
+      width: 100%;
+	}
+
+	.float{
+		position:fixed;
+		width:60px;
+		height:60px;
+		bottom:10px;
+		right:10px;
+		border: none;
+		border-radius:50px;
+		text-align:center;
+		background: #001a25;
+		color: #eee8d5;
+	}
+    </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     </head>
     <body style="text-align:center;">
         <form action="paste" method="POST" id="pasteform" name="pasteform">
-            <textarea cols="30" rows="15"></textarea>
-                        <input type="submit" value="Paste!" class="float"/>
+            <textarea name="paste" cols="80" rows="24"></textarea>
+            <input type="submit" value="Paste!" class="float"/>
         </form>
     </body>
 </html>
