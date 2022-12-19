@@ -15,5 +15,6 @@ build: clean
 	cd build ; set -x ; GOPATH=`pwd`/../modules go build $${STATIC:+$(STATIC_FLAGS)}  -a -o paste *.go
 
 clean:
+	mkdir -p build
 	chmod 777 -R build
 	rm -rf build go.sum
