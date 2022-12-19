@@ -41,5 +41,5 @@ func paste (w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/view/%s'\" />", paste_id)
+    fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/%s'\" />", paste_id)
 }
