@@ -20,12 +20,12 @@ func view (w http.ResponseWriter, r *http.Request) {
     }
 
     var paste string
-    query := fmt.Sprintf("SELECT paste FROM paste WHERE id='%s';", r.URL.Path[1:])
+    query := fmt.Sprintf("SELECT paste FROM paste WHERE id='%s';", b64_encode(r.URL.Path[1:]))
     err = db.QueryRow(query).Scan(&paste)
 
     if err != nil {
         fmt.Println(err)
     }
-    
-    fmt.Fprintf(w, "%s\n", paste)
+    w.Header().Set("Content-type:", "text/plain; charset=utf-8");
+    fmt.Fprintf(w, "%s\n", b64_decode(paste))
 }

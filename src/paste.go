@@ -10,7 +10,7 @@ import (
 )
 
 func paste (w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Content-Type", "text/html")
+    w.Header().Set("Content-Type", "text/html; charset=utf-8")
     w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
     w.Header().Set("Pragma", "no-cache")
     w.Header().Set("Expires", "0")
@@ -34,7 +34,7 @@ func paste (w http.ResponseWriter, r *http.Request) {
     }
     crc32q := crc32.MakeTable(0xD5828281)
     paste_id = fmt.Sprintf("%08x", crc32.Checksum([]byte(string(paste)), crc32q))
-    query := fmt.Sprintf("INSERT INTO paste (id,paste) VALUES(\"%s\", \"%s\");", paste_id, paste)
+    query := fmt.Sprintf("INSERT INTO paste (id,paste) VALUES(\"%s\", \"%s\");", b64_encode(paste_id), b64_encode(paste))
     fmt.Fprintf(w,"%s\n",query)
     fmt.Println(query)
     _, err = db.Exec(query)

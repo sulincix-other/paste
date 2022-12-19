@@ -6,7 +6,7 @@ echo '    "net/http"'
 echo ')'
 echo ''
 echo 'func '$1' (w http.ResponseWriter, req *http.Request) {'
-echo '    w.Header().Set("Content-Type", "'$3'")'
+echo '    w.Header().Set("Content-Type", "'$3'; charset=utf-8")'
 echo '    fmt.Fprintf(w,"%s", `'
 cat "$2"
 echo ''
