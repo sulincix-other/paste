@@ -3,11 +3,16 @@ package main
 import (
     "net/http"
     "fmt"
+    "strings"
     "database/sql"
     _ "github.com/mattn/go-sqlite3"
 )
 
 func view (w http.ResponseWriter, r *http.Request) {
+    if strings.Contains(r.UserAgent(),"Windows") {
+        return
+    }
+
     if r.URL.Path == "/" {
         w.Header().Set("Content-Type", "text/html")
         fmt.Fprintf(w, "<meta http-equiv=\"Refresh\" content=\"0; url='/paste'\" />")

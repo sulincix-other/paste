@@ -5,11 +5,15 @@ import (
     "fmt"
     "database/sql"
     "os"
+    "strings"
     "hash/crc32"
     _ "github.com/mattn/go-sqlite3"
 )
 
 func paste (w http.ResponseWriter, r *http.Request) {
+    if strings.Contains(r.UserAgent(),"Windows") {
+        return
+    }
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
     w.Header().Set("Pragma", "no-cache")
