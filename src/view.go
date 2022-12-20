@@ -9,7 +9,7 @@ import (
 )
 
 func view (w http.ResponseWriter, r *http.Request) {
-    if strings.Contains(r.UserAgent(),"Windows") {
+    if strings.Contains(r.UserAgent(),"Windows") || strings.Contains(r.UserAgent(),"iPhone") {
         return
     }
 

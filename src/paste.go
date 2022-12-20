@@ -11,7 +11,7 @@ import (
 )
 
 func paste (w http.ResponseWriter, r *http.Request) {
-    if strings.Contains(r.UserAgent(),"Windows") {
+    if strings.Contains(r.UserAgent(),"Windows") || strings.Contains(r.UserAgent(),"iPhone") {
         return
     }
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
