@@ -16,6 +16,12 @@ build: clean
 	cd build ; set -x ; GOPATH=`pwd`/../modules go build $${STATIC:+$(STATIC_FLAGS)}  -a -o paste *.go
 	strip build/paste
 
+static:
+	make STATIC=1
+
+docker:
+	bash scripts/docker.sh
+
 clean:
 	mkdir -p build
 	chmod 777 -R build
