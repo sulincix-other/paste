@@ -14,6 +14,7 @@ build: clean
 	    bash tool/gendata.sh $${fname/./_} $$file text/$${fname/*./} > build/$$fname.go ; \
 	done
 	cd build ; set -x ; GOPATH=`pwd`/../modules go build $${STATIC:+$(STATIC_FLAGS)}  -a -o paste *.go
+	strip build/paste
 
 clean:
 	mkdir -p build

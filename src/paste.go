@@ -60,10 +60,8 @@ func paste (w http.ResponseWriter, r *http.Request) {
     }
     
     // Insert new paste
-    fmt.Println(id_exists+" "+paste_id)
     if id_exists != b64_encode(paste_id) {
         query := fmt.Sprintf("INSERT OR REPLACE INTO paste (id,paste) VALUES(\"%s\", \"%s\");", b64_encode(paste_id), b64_encode(paste))
-        fmt.Println(paste_id)
         _, err = db.Exec(query)
         if err != nil {
             fmt.Println(err)
