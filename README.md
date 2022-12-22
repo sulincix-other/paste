@@ -13,7 +13,7 @@ Simple paste service written go
 ### From docker image
 ```shell
 docker run -d \
-    -p 2023:<port> \
+    -p <port>:2023 \
     registry.gitlab.com/sulincix/paste \
     /paste
 ```
